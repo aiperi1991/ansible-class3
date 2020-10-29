@@ -11,11 +11,13 @@
     name: mariadb
     state: started
     enabled: yes
+  when: local_mysql
   
 - name: Create a Wordpress DB
   mysql_db:
     name: wordpress
     state: present
+  when: local_mysql
 
     
 - name: Create MySQL User
@@ -23,4 +25,5 @@
     name: "{{ mysql_user }}"
     password: "{{ mysql_password }}"
     priv: '*.*:ALL'
-    state: present          
+    state: present     
+  when: local_mysql     
